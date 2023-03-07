@@ -15,13 +15,13 @@ RSpec.describe Vendor do
 
   it "has an inventory which defaults items to stock 0 and has a way to check that stock" do
     expect(@vendor1.inventory).to eq({})
-    expect(@vendor1.check_stock).to eq(0)
+    expect(@vendor1.check_stock(@item1)).to eq(0)
   end
 
   it "can stock items" do
     @vendor1.stock(@item1, 30)
 
-    expect(@vendor1.inventory).to eq({@item1, 30})
+    expect(@vendor1.inventory).to eq({@item1=>30})
     expect(@vendor1.check_stock(@item1)).to eq(30)
     
     @vendor1.stock(@item1, 25)
