@@ -89,13 +89,13 @@ RSpec.describe Market do
       expect(@market1.overstocked_items).not_to include(@item2, @item3, @item5)
     end
 
-    xit "can list total inventory" do
-      expect(@market1.total_inventory).to eq({@item1=>{quantity: 100, vendors: [@vendor1, @vendor3]},
-                                             @item2=>{quantity: 20, vendors: [@vendor1, @vendor3]},
-                                             @item3=>{quantity: 25, vendors: [@vendor2]},
-                                             @item4=>{quantity: 70, vendors: [@vendor2, @vendor3]},
-                                             @item5=>{quantity: 80, vendors: [@vendor3]},
-                                             @item6=>{quantity: 70, vendors: [@vendor2, @vendor3]}})
+    it "can list total inventory" do
+      expect(@market1.total_inventory).to eq({"Peach"=>{quantity: 100, vendors: [@vendor1, @vendor3]},
+                                              "Tomato"=>{quantity: 20, vendors: [@vendor1, @vendor3]},
+                                              "Peach-Raspberry Nice Cream"=>{quantity: 25, vendors: [@vendor2]},
+                                              "Banana Nice Cream"=>{quantity: 70, vendors: [@vendor2, @vendor3]},
+                                              "Pez dispenser"=>{quantity: 80, vendors: [@vendor3]},
+                                              "Cow tails"=>{quantity: 70, vendors: [@vendor1, @vendor2]}})
     end
   end
 end
