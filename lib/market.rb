@@ -59,10 +59,10 @@ class Market
       while quantity > 0
         vendors_that_sell(item).each do |vendor|
           this_transaction = vendor.inventory[item]
-          if vendor.inventory[item] - quantity < 0
-            vendor.inventory[item] = 0
+          if vendor.check_stock(item) - quantity < 0
+            vendor.sell(item, vendor.check_stock(item))
           else
-            vendor.inventory[item] -= quantity
+            vendor.sell(item, quantity)
           end
           quantity -= this_transaction
         end
