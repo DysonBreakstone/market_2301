@@ -38,6 +38,10 @@ RSpec.describe Vendor do
 
     it "can sell items" do
       @vendor1.stock(@item1, 30)
+      @vendor1.sell(@item1, 100)
+
+      expect(@vendor1.check_stock(@item1)).to eq(30)
+
       @vendor1.sell(@item1, 20)
 
       expect(@vendor1.check_stock(@item1)).to eq(10)
