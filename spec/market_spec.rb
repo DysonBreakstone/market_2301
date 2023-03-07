@@ -55,6 +55,7 @@ RSpec.describe Market do
 
   describe "Items sold at market" do
     before(:each) do
+      @market1 = Market.new("South Pearl Street Farmers Market")
       @vendor1 = Vendor.new("Rocky Mountain Fresh")
       @vendor2 = Vendor.new("Ba-Nom-a-Nom")
       @vendor3 = Vendor.new("Palisade Peach Shack")
@@ -72,8 +73,8 @@ RSpec.describe Market do
       @vendor2.stock(@item6, 35)
       @vendor3.stock(@item1, 65)
       @vendor3.stock(@item5, 80)
-      @vnedor3.stock(@item2, 13)
-      @vnedor3.stock(@item4, 20)
+      @vendor3.stock(@item2, 13)
+      @vendor3.stock(@item4, 20)
       @market1.add_vendor(@vendor1)
       @market1.add_vendor(@vendor2)
       @market1.add_vendor(@vendor3)
@@ -83,12 +84,12 @@ RSpec.describe Market do
       expect(@market1.sorted_item_list).to eq(["Banana Nice Cream", "Cow tails", "Peach", "Peach-Raspberry Nice Cream", "Pez dispenser", "Tomato"])
     end
 
-    it "can list overstocked items" do
+    xit "can list overstocked items" do
       expect(@market1.overstocked_items).to include(@item1, @item6, @item4)
       expect(@market1.overstocked_items).not_to include(@item2, @item3, @item5)
     end
 
-    it "can list total inventory" do
+    xit "can list total inventory" do
       expect(@market1.total_inventory).to eq({@item1=>{quantity: 100, vendors: [@vendor1, @vendor3]},
                                              @item2=>{quantity: 20, vendors: [@vendor1, @vendor3]},
                                              @item3=>{quantity: 25, vendors: [@vendor2]},
@@ -96,6 +97,5 @@ RSpec.describe Market do
                                              @item5=>{quantity: 80, vendors: [@vendor3]},
                                              @item6=>{quantity: 70, vendors: [@vendor2, @vendor3]}})
     end
-
   end
 end

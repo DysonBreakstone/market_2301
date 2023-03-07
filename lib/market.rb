@@ -17,4 +17,12 @@ class Market
   def vendors_that_sell(item)
     @vendors.select{|vendor| vendor.inventory[item] > 0}
   end
+
+  def sorted_item_list
+    @vendors.map{|vendor| 
+      vendor.inventory.map{|item, stock| 
+        item.name}}.flatten.uniq.sort
+  end
+
+  def 
 end
