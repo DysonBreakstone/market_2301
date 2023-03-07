@@ -13,4 +13,10 @@ class Vendor
   def stock(item, quantity)
     @inventory[item] += quantity
   end
+  
+  def potential_revenue
+    rev = 0.0
+    @inventory.each{|item, stock| rev += (item.price * stock).round(2)}
+    rev
+  end
 end
