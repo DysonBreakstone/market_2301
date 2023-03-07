@@ -24,5 +24,13 @@ class Market
         item.name}}.flatten.uniq.sort
   end
 
-  def 
+  def overstocked_items
+    item_numbers = Hash.new(0)
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, quantity|
+        item_numbers[item] += quantity
+      end
+    end
+    item_numbers.select{|item, number| vendors_that_sell(item).count > 1 && number >= 50}    
+  end
 end

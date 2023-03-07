@@ -84,7 +84,7 @@ RSpec.describe Market do
       expect(@market1.sorted_item_list).to eq(["Banana Nice Cream", "Cow tails", "Peach", "Peach-Raspberry Nice Cream", "Pez dispenser", "Tomato"])
     end
 
-    xit "can list overstocked items" do
+    it "can list overstocked items" do
       expect(@market1.overstocked_items).to include(@item1, @item6, @item4)
       expect(@market1.overstocked_items).not_to include(@item2, @item3, @item5)
     end
