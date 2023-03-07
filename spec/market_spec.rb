@@ -89,6 +89,15 @@ RSpec.describe Market do
       expect(@market1.overstocked_items).not_to include(@item2, @item3, @item5)
     end
 
+    it "#count_items helper method" do
+      expect(@market1.count_items).to eq({@item1=>100,
+                                          @item2=>20,
+                                          @item3=>25,
+                                          @item4=>70,
+                                          @item5=>80,
+                                          @item6=>70})
+    end
+
     it "can list total inventory" do
       expect(@market1.total_inventory).to eq({"Peach"=>{quantity: 100, vendors: [@vendor1, @vendor3]},
                                               "Tomato"=>{quantity: 20, vendors: [@vendor1, @vendor3]},
@@ -130,11 +139,11 @@ RSpec.describe Market do
       expect(@market1.date).to eq(Time.now.strftime("%d/%m/%Y"))
     end
 
-    xit "can sell items" do
+    it "can sell items" do
       expect(@market1.sell(@item2, 1000)).to eq(false)
 
-      @market.sell(@item4, 65)
-      @market.sell(@item6, 60)
+      @market1.sell(@item4, 65)
+      @market1.sell(@item6, 60)
 
       expect(@vendor2.inventory[@item4]).to eq(0)
       expect(@vendor3.inventory[@item4]).to eq(5)

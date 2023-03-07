@@ -52,4 +52,23 @@ class Market
     item_numbers
   end
 
+  def sell(item, quantity)
+    if count_items[item] < quantity
+      return false
+    else
+      while quantity > 0
+        vendors_that_sell(item).each do |vendor|
+          this_transaction = vendor.inventory[item]
+          if vendor.inventory[item] - quantity < 0
+            vendor.inventory[item] = 0
+          else
+            vendor.inventory[item] -= quantity
+          end
+          quantity -= this_transaction
+        end
+      end
+    end
+
+  end
+
 end
